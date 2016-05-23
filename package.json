@@ -1,0 +1,11 @@
+{
+  "name": "redux-course-ru",
+  "version": "1.0.0",
+  "description": "Redux RU tutorial",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Maxim Patsianskiy",
+  "license": "MIT"
+}
