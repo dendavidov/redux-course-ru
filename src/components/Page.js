@@ -3,19 +3,24 @@ import React, { PropTypes, Component } from 'react';
 export default class Page extends Component {
 
     onYearBtnClick(e) {
-        this.props.setYear(+e.target.textContent)
+        let year = +e.target.textContent;
+        this.props.setYear(year);
+        this.props.downloadPhotos(year);
     }
 
     render() {
-        const { year, photos } = this.props;
+        console.log(this.props);
+        const { year, photos, errorText, downloading } = this.props;
         return <div className='ib page'>
+
             <p>
                 <button className='btn' onClick={::this.onYearBtnClick}>2016</button>
                 <button className='btn' onClick={::this.onYearBtnClick}>2015</button>
                 <button className='btn' onClick={::this.onYearBtnClick}>2014</button>
             </p>
             <h3>{ year} year</h3>
-            <p>You have {photos.length} photos for {year} year!</p>
+            { (errorText) ? <p>{ errorText }</p> : null }
+            <p>{ (downloading) ? 'Loading...' : `You have ${photos.length} photos for ${year} year!` }</p>
         </div>
     }
 }
