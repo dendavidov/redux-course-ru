@@ -1,28 +1,30 @@
-import { SET_YEAR, DOWNLOAD_PHOTOS_START, DOWNLOAD_PHOTOS_SUCCESS, DOWNLOAD_PHOTOS_ERROR } from '../constants/Page'
+import { DOWNLOAD_PHOTOS_START, DOWNLOAD_PHOTOS_SUCCESS, DOWNLOAD_PHOTOS_ERROR } from '../constants/Page'
 
-export function setYear(year) {
-    return {
-        type: SET_YEAR,
-        payload: year
-    }
-}
+export function fetchPhotos(year) {
+  return ( dispatch ) => {
+      dispatch({
+        type: DOWNLOAD_PHOTOS_START,
+        year
+      });
 
-export function downloadPhotosStart() {
-    return {
-        type: DOWNLOAD_PHOTOS_START
-    }
-}
+      const success = Math.ceil(Math.random() * 2) - 1;
+      const photos = ['photo1', 'photo2', 'photo3'];
+      const errorText = 'Access forbidden';
 
-export function downloadPhotosSuccess(payload) {
-    return {
-        type: DOWNLOAD_PHOTOS_SUCCESS,
-        payload
-    }
-}
-
-export function downloadPhotosError(error) {
-    return {
-        type: DOWNLOAD_PHOTOS_ERROR,
-        payload: error
-    }
+      if (success) {
+          setTimeout(() => {
+              dispatch({
+                  type: DOWNLOAD_PHOTOS_SUCCESS,
+                  payload: photos
+              })
+          }, 1000)
+      } else {
+          setTimeout (() => {
+              dispatch({
+                  type: DOWNLOAD_PHOTOS_ERROR,
+                  payload: errorText
+              })
+          }, 1000)
+      }
+  }
 }

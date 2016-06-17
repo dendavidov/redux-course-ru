@@ -4,12 +4,10 @@ export default class Page extends Component {
 
     onYearBtnClick(e) {
         let year = +e.target.textContent;
-        this.props.setYear(year);
-        this.props.downloadPhotos(year);
+        this.props.fetchPhotos(year);
     }
 
     render() {
-        console.log(this.props);
         const { year, photos, errorText, downloading } = this.props;
         return <div className='ib page'>
 
@@ -29,4 +27,4 @@ Page.propTypes = {
     year: PropTypes.number.isRequired,
     photos: PropTypes.array.isRequired,
     setYear: PropTypes.func.isRequired
-}
+};
